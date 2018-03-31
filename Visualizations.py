@@ -22,7 +22,25 @@ TSLAData = pd.read_csv('Data/stocks/' + TSLAFileName)
 plt.scatter(AAPLData['Date'], AAPLData['Close'], color = 'red')
 plt.scatter(TSLAData['Date'], TSLAData['Close'], color = 'blue')
 plt.title('AAPL vs TSLA Close Prices')
-plt.ylabel('price')
-plt.xlabel('date')
+plt.xlabel('Date')
+plt.ylabel('Price')
 plt.show()
+plt.clf()
 
+#plot cose price over time starting from tesla go live date
+AAPLDataTrunc = AAPLData[AAPLData['Date'].isin(TSLAData['Date'])] # get all AAPLData that is in TSLA
+plt.scatter(AAPLDataTrunc['Date'], AAPLDataTrunc['Close'], color = 'red')
+plt.scatter(TSLAData['Date'], TSLAData['Close'], color = 'blue')
+plt.title('AAPL vs TSLA Close Prices Truncated')
+plt.xlabel('Date')
+plt.ylabel('Price')
+plt.show()
+plt.clf()
+
+#let's take a look at volume over time
+plt.scatter(AAPLData['Date'], AAPLData['Volume'], color = 'red')
+plt.title('AAPL Volume Over Time')
+plt.xlabel('Date')
+plt.ylabel('Volume')
+plt.show()
+plt.clf()
